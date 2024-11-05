@@ -19,10 +19,11 @@ app.get('/posts', async (req, res) => {
     const result = await pool.query('SELECT title, content FROM posts');
     res.json(result.rows);
   } catch (error) {
-    console.error(error);
+    console.error('Database error:', error.message);
     res.status(500).send('Error retrieving posts');
   }
 });
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
